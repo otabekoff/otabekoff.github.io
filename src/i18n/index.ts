@@ -5,15 +5,131 @@ const i18n = createI18n({
   fallbackLocale: 'en',
   messages: {
     en: {
-      navigation: {
-        contact: "Contact"
+      lang: "English",
+      nav: {
+        aboutMe: "About Me",
+        myBlog: "Read my blog",
+        findMore: "Find more about me",
+        mySkills: "Explore my skills",
+        myResume: "See my resume",
+        portfolio: "Portfolio",
+        myProjects: "My Projects",
+        publicRepos: "Public Repositories",
+        ghProfile: "GitHub Profile",
+        liProfile: "LinkedIn Profile",
+        ytProfile: "YouTube Profile",
+        tgProfile: "Telegram Profile",
+        contact: "Contact",
+        auto: "Auto",
+        light: "Light",
+        dark: "Dark",
+      }
+    },
+    ru: {
+      lang: "Русский",
+      nav: {
+        aboutMe: "Обо мне",
+        myBlog: "Читать мой блог",
+        findMore: "Узнайте больше обо мне",
+        mySkills: "Изучите мои навыки",
+        myResume: "Смотреть резюме",
+        portfolio: "Портфолио",
+        myProjects: "Мои проекты",
+        publicRepos: "Публичные репозитории",
+        ghProfile: "Профиль на GitHub",
+        liProfile: "Профиль на LinkedIn",
+        ytProfile: "Профиль на YouTube",
+        tgProfile: "Профиль на Telegram",
+        contact: "Контакты",
+        auto: "Авто",
+        light: "Светлая",
+        dark: "Тёмная",
       }
     },
     uz: {
-      navigation: {
-        contact: "Bog'lanish"
+      lang: "O‘zbekcha",
+      nav: {
+        aboutMe: "Men haqimda",
+        myBlog: "Blogimni o‘qing",
+        findMore: "Meni ko‘proq bilib oling",
+        mySkills: "Bilim va ko‘nikmalarim",
+        myResume: "Rezyumeni ko‘rish",
+        portfolio: "Portfolio",
+        myProjects: "Loyihalarim",
+        publicRepos: "Ommaviy repozitoriyalar",
+        ghProfile: "GitHub Profilim",
+        liProfile: "LinkedIn Profilim",
+        ytProfile: "YouTube Profilim",
+        tgProfile: "Telegram Profilim",
+        contact: "Bog‘lanish",
+        auto: "Avto",
+        light: "Yorqin",
+        dark: "Qorong‘i",
       }
-    }
+    },
+    oz: {
+      lang: "Ўзбекча",
+      nav: {
+        aboutMe: "Мен ҳақимда",
+        myBlog: "Блогимни ўқинг",
+        findMore: "Мен кўпроқ билиб олинг",
+        mySkills: "Билим ва кўникмаларим",
+        myResume: "Резюмени кўриш",
+        portfolio: "Портфолио",
+        myProjects: "Лойиҳаларим",
+        publicRepos: "Оммавий репозиторийлар",
+        ghProfile: "GitHub Профилим",
+        liProfile: "LinkedIn Профилим",
+        ytProfile: "YouTube Профилим",
+        tgProfile: "Telegram Профилим",
+        contact: "Богланиш",
+        auto: "Авто",
+        light: "Ёрқин",
+        dark: "Қоронғи",
+      }
+    },
+    kr: {
+      lang: "Qaraqalpaqsha",
+      nav: {
+        aboutMe: "Men turalı",
+        myBlog: "Blogımnı oqıñ",
+        findMore: "Meniñ turalı köbirek bilip alıñ",
+        mySkills: "Maşğulatlarımnı ögreniñ",
+        myResume: "Rezyumenı köriñ",
+        portfolio: "Portfoliı",
+        myProjects: "Loyihalarım",
+        publicRepos: "Jömektegi repozitoriylar",
+        ghProfile: "GitHub Profilim",
+        liProfile: "LinkedIn Profilim",
+        ytProfile: "YouTube Profilim",
+        tgProfile: "Telegram Profilim",
+        contact: "Baylanıs",
+        auto: "Avto",
+        light: "Yorıq",
+        dark: "Qorongı",
+      }
+    },
+    qr: {
+      lang: "Қарақалпақша",
+      nav: {
+        aboutMe: "Мен туралы",
+        myBlog: "Блогымды оқыңыз",
+        findMore: "Мен туралы көбірек біліп алыңыз",
+        mySkills: "Машғулаттарымды үйреніңіз",
+        myResume: "Резюмемді көріңіз",
+        portfolio: "Портфолио",
+        myProjects: "Жобаларым",
+        publicRepos: "Жалпы репозиторийлер",
+        ghProfile: "GitHub Профилім",
+        liProfile: "LinkedIn Профилім",
+        ytProfile: "YouTube Профилім",
+        tgProfile: "Telegram Профилім",
+        contact: "Байланыс",
+        auto: "Авто",
+        light: "Жарық",
+        dark: "Қараңғы",
+      }
+    },
   }
 })
 

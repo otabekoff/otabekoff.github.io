@@ -8,13 +8,13 @@
           to="/"
           class="mr-4 md:mr-2 lg:mr-6 flex items-center lg:space-x1 xl:space-x-2"
         >
-          <Logo></Logo>
+          <Logo :color="mode == 'dark' ? 'white' : 'black'" />
           <span class="font-bold"> Bekfolio </span></router-link
         >
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>About Me</NavigationMenuTrigger>
+              <NavigationMenuTrigger>{{ $t("nav.aboutMe") }}</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul
                   class="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[minmax(0,.75fr)_minmax(0,1fr)]"
@@ -26,7 +26,9 @@
                         to="/blog"
                       >
                         <img src="https://www.radix-vue.com/logo.svg" class="h-6 w-6" />
-                        <div class="mb-2 mt-4 text-lg font-medium">My blog</div>
+                        <div class="mb-2 mt-4 text-lg font-medium">
+                          {{ $t("nav.myBlog") }}
+                        </div>
                         <p class="text-sm leading-tight text-muted-foreground">
                           Beautifully designed components built with Radix UI and Tailwind
                           CSS.
@@ -42,7 +44,7 @@
                         class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
                         <div class="text-sm font-medium leading-none">
-                          Find more about me
+                          {{ $t("nav.findMore") }}
                         </div>
                         <p
                           class="line-clamp-2 text-sm leading-snug text-muted-foreground"
@@ -59,7 +61,7 @@
                         class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
                         <div class="text-sm font-medium leading-none">
-                          Explore my skills
+                          {{ $t("nav.mySkills") }}
                         </div>
                         <p
                           class="line-clamp-2 text-sm leading-snug text-muted-foreground"
@@ -76,7 +78,7 @@
                         class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
                         <div class="text-sm font-medium leading-none">
-                          Download my resume
+                          {{ $t("nav.myResume") }}
                         </div>
                         <p
                           class="line-clamp-2 text-sm leading-snug text-muted-foreground"
@@ -90,7 +92,7 @@
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Porfolio</NavigationMenuTrigger>
+              <NavigationMenuTrigger>{{ $t("nav.portfolio") }}</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul
                   class="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]"
@@ -117,7 +119,9 @@
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Button variant="ghost">
-                <router-link to="/contact"> {{ $t("navigation.contact") }} </router-link>
+                <router-link to="/contact">
+                  {{ $t("nav.contact") }}
+                </router-link>
               </Button>
             </NavigationMenuItem>
           </NavigationMenuList>
@@ -134,49 +138,54 @@
         <span class="sr-only">Toggle Menu</span>
       </button>
       <div class="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-        <Select>
-          <SelectTrigger class="w-[180px]">
-            <SelectValue placeholder="Tilni tanlang" />
+        <Select @update:model-value="handleLanguageChange" v-model="locale">
+          <SelectTrigger class="w-[150px]">
+            <SelectValue :placeholder="$t('lang')" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <!-- <SelectLabel>Tillar</SelectLabel> -->
-              <SelectItem value="uz">O‘zbekcha</SelectItem>
-              <SelectItem value="oz">Ўзбекча</SelectItem>
-              <SelectItem value="ru">Русский</SelectItem>
               <SelectItem value="en">English</SelectItem>
+              <SelectItem value="ru">Русский</SelectItem>
+              <SelectItem value="oz">Ўзбекча</SelectItem>
+              <SelectItem value="uz">O‘zbekcha</SelectItem>
               <SelectItem value="kr">Qaraqalpaqsha</SelectItem>
+              <SelectItem value="qr">Қарақалпақша</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
         <nav class="flex items-center">
-          <Popover>
-            <PopoverTrigger>
+          <DropdownMenu>
+            <DropdownMenuTrigger as-child>
               <Button variant="ghost" class="px-3" size="icon">
-                <Theme />
+                <!-- <ThemeIcon /> -->
+                <Icon
+                  icon="radix-icons:moon"
+                  class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+                />
+                <Icon
+                  icon="radix-icons:sun"
+                  class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+                />
+                <span class="sr-only">Toggle theme</span>
               </Button>
-            </PopoverTrigger>
-            <PopoverContent>Popover</PopoverContent>
-          </Popover>
-          <Popover>
-            <PopoverTrigger>
-              <Button variant="ghost" class="px-3" size="icon">
-                <Settings />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent>Popover</PopoverContent>
-          </Popover>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent class="w-24">
+              <DropdownMenuRadioGroup v-model="themeSelectPosition">
+                <DropdownMenuRadioItem value="auto">{{
+                  $t("nav.auto")
+                }}</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="light">{{
+                  $t("nav.light")
+                }}</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="dark">{{
+                  $t("nav.dark")
+                }}</DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <Button variant="ghost" class="px-3" size="icon">
             <Github />
           </Button>
-          <Popover>
-            <PopoverTrigger>
-              <Button variant="ghost" class="px-3" size="icon">
-                <ThemeIcon />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent>Popover</PopoverContent>
-          </Popover>
         </nav>
       </div>
     </div>
@@ -184,7 +193,21 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+
+// Get the i18n instance
+const { locale } = useI18n();
+
+// Handle the language change
+const handleLanguageChange = (selectedLang: string) => {
+  locale.value = selectedLang;
+};
+
 import { Button } from "@/components/ui/button";
+
 // Icons
 import Logo from "@/components/icons/Logo.vue";
 import Theme from "@/components/icons/Theme.vue";
@@ -213,42 +236,67 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
+} from "@/components/ui/select";
+
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import { Icon } from "@iconify/vue";
+import { useColorMode } from "@vueuse/core";
+const mode = useColorMode({ disableTransition: false });
+const themeSelectPosition = ref("auto");
+watch(themeSelectPosition, (newTheme) => {
+  if (newTheme === "light") {
+    mode.value = "light";
+  } else if (newTheme === "dark") {
+    mode.value = "dark";
+  } else {
+    mode.value = "auto";
+  }
+});
 
 // Variables and data
 const components: { title: string; href: string; description: string }[] = [
   {
-    title: "My projects",
-    href: "/docs/components/alert-dialog",
+    title: t("nav.myProjects"),
+    href: "/projects",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
   {
-    title: "Public Repositories",
-    href: "/docs/components/tabs",
+    title: t("nav.publicRepos"),
+    href: "/repositories",
     description:
       "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
   },
   {
     title: "GitHub Profile",
-    href: "/docs/components/hover-card",
+    href: "/github",
     description: "For sighted users to preview content available behind a link.",
   },
   {
     title: "LinkedIn Profile",
-    href: "/docs/components/tooltip",
+    href: "/linkedin",
     description:
       "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
   },
   {
     title: "YouTube channel",
-    href: "/docs/components/progress",
+    href: "/youtube",
     description:
       "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
   },
   {
     title: "Telegram channel",
-    href: "/docs/components/scroll-area",
+    href: "/telegram",
     description: "Visually or semantically separates content.",
   },
 ];

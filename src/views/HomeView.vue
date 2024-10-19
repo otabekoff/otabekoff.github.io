@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { Separator } from "../components/ui/separator";
 
+import { useColorMode } from "@vueuse/core";
+const mode = useColorMode({ disableTransition: false });
+
 // Resources
 import CheckerBoard from "@/components/CheckerBoard.vue";
 
@@ -67,11 +70,11 @@ const sections = [
         <div
           class="absolute inset-x-0 top-0 z-10 flex size-full items-center justify-center opacity-100"
         >
-          <CheckerBoard></CheckerBoard>
+          <CheckerBoard :opacity="mode == 'dark' ? 0.07 : 1" />
         </div>
         <div class="mx-auto flex max-w-5xl flex-col items-center">
           <div class="z-10 flex flex-col items-center gap-6 text-center">
-            <Logo class="h-14 w-14" />
+            <Logo :color="mode == 'dark' ? 'white' : 'black'" class="h-14 w-14" />
             <Badge variant="outline">Full Stack Senior Developer</Badge>
             <div>
               <h1 class="mb-6 text-pretty text-2xl font-bold lg:text-5xl">
@@ -257,7 +260,7 @@ const sections = [
           <Separator class="my-14" />
           <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             <div v-for="(section, sectionIdx) in sections" :key="sectionIdx">
-              <h3 class="mb-4 font-bold">{{section.title}}</h3>
+              <h3 class="mb-4 font-bold">{{ section.title }}</h3>
               <ul class="space-y-4 text-muted-foreground">
                 <li
                   v-for="(link, index) in section.links"

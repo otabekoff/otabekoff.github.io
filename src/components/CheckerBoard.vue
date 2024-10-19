@@ -1,11 +1,11 @@
 <template>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1125">
+    <g :opacity="opacity">
     <mask id="b" width="2000" height="1125" x="0" y="0">
       <path fill="url(#a)" d="M0 0h2000v1125H0z"></path>
     </mask>
-    <path fill="#fff" d="M0 0h2000v1125H0z"></path>
     <g
-      stroke="#eee"
+      stroke="#eeeeee"
       stroke-width="0.6"
       mask="url(#b)"
       style="transform-origin: center center"
@@ -258,9 +258,17 @@
         <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
       </radialGradient>
     </defs>
+    </g>
   </svg>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps({
+  opacity: {
+    type: Number,
+    default: 1
+  }
+})
+</script>
 
 <style lang="scss" scoped></style>
